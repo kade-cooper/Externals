@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1591820221741950506}
   - component: {fileID: 1591820221741950505}
   - component: {fileID: 1591820221741950504}
-  - component: {fileID: 1591820221741950507}
+  - component: {fileID: 4478867686438415915}
   m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8a3fd862f7d171a49aedb4bb31a874d8, type: 2}
+  - {fileID: 2100000, guid: 8b7d682a3f768a14b87cbeb6a3fff8eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1591820221741950507
+--- !u!114 &4478867686438415915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1591820221741950502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b91d35b1c0408459e7649fde6840ec, type: 3}
+  m_Script: {fileID: 11500000, guid: fa5de82107fd8a543bf84dc9f8e19f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whole: {fileID: 1591820222142692091}
@@ -115,6 +115,7 @@ MonoBehaviour:
   velocityToSmash: -9
   blood: {fileID: 5164528349541529829, guid: 396d3e88dd3ffa74d9c104b2572ada2a, type: 3}
   pms: {fileID: 0}
+  bounce: 60
 --- !u!1 &1591820222142692091
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,11 +125,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1591820222142692092}
-  - component: {fileID: 1591820222142692093}
   - component: {fileID: 1591820222142692094}
   - component: {fileID: 1591820222142692095}
+  - component: {fileID: 6389128225532255923}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: bouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,20 +152,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1591820222142692093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591820222142692091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9defd8d406e750e478bef117a2e89440, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shoveImpulse: 100
-  head: {fileID: 1591820221741950507}
 --- !u!136 &1591820222142692094
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -195,6 +182,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6389128225532255923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591820222142692091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c76cf03f14bc664aac0c9a29f8ceac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoveImpulse: 100
+  head: {fileID: 4478867686438415915}
+  blood: {fileID: 5164528349541529829, guid: 396d3e88dd3ffa74d9c104b2572ada2a, type: 3}
+  hasBeenHit: 0
+  player: {fileID: 0}
+  bounce: 50
 --- !u!1 &1591820222542285524
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8a3fd862f7d171a49aedb4bb31a874d8, type: 2}
+  - {fileID: 2100000, guid: 8b7d682a3f768a14b87cbeb6a3fff8eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

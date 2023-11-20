@@ -12,7 +12,7 @@ public class playerMovementScript : MonoBehaviour
 
     public CharacterController thisCC;
 
-    Vector3 velocity;
+    public Vector3 velocity;
     public float gravity = -9;
 
     public Transform feet;

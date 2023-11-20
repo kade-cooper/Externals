@@ -6,7 +6,9 @@ public class playerAttkScript : MonoBehaviour
 {
 
     public KeyCode attk1;
+    public KeyCode attk2;
     public GameObject attkObject;
+    public GameObject attkObject2;
     public float cooldown;
     public float time;
     // Start is called before the first frame update
@@ -22,6 +24,11 @@ public class playerAttkScript : MonoBehaviour
         if (Input.GetKey(attk1) && time<=0)
         {
             attkObject.SetActive(true);
+            time = cooldown;
+        }
+        else if(Input.GetKey(attk2) && time <= 0)
+        {
+            attkObject2.SetActive(true);
             time = cooldown;
         }
         else
