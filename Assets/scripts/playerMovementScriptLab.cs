@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerMovementScript : MonoBehaviour
+public class playerMovementScriptLab : MonoBehaviour
 {
 
 
@@ -13,10 +13,7 @@ public class playerMovementScript : MonoBehaviour
     public CharacterController thisCC;
 
     public Vector3 velocity;
-    public Vector3 lastVelocity;
-    public float acceleration;
-    public float force;
-    public float gravity = -30;
+    public float gravity = -9;
 
     public Transform feet;
     public float distance = 0.2f;
@@ -24,10 +21,11 @@ public class playerMovementScript : MonoBehaviour
 
     public bool isGrounded;
 
+    public GameObject carrying;
+
     // Start is called before the first frame update
     void Start()
     {
-        //gravity = -30;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -51,12 +49,17 @@ public class playerMovementScript : MonoBehaviour
         }
         velocity.y += gravity * Time.deltaTime;
         thisCC.Move(velocity*Time.deltaTime);
+    }
 
-        acceleration = (this.GetComponent<CharacterController>().velocity.magnitude - lastVelocity.magnitude) / Time.fixedDeltaTime;
-        lastVelocity = this.GetComponent<CharacterController>().velocity;
-        force = System.Math.Abs(acceleration * gravity);
-        if (force > 1000)
-            Debug.Log(force);
+    public void changeCarry()
+    {
+        Transform child = this.gameObject.transform.GetChild(3);
+        foreach(Transform carryable in child)
+        {
+            carryable.gameObject.SetActive(false);
+        }
+        int location = carrying.ToString().IndexOf("(");
+        child.transform.Find(carrying.ToString().Substring(0, location-1)).gameObject.SetActive(true);
     }
 
 
