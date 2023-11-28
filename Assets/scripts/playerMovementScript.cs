@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
+using System.Text;
 
 public class playerMovementScript : MonoBehaviour
 {
@@ -24,12 +27,16 @@ public class playerMovementScript : MonoBehaviour
 
     public bool isGrounded;
 
+    public int count=0;
+
+
     // Start is called before the first frame update
     void Start()
     {
         //gravity = -30;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -55,8 +62,37 @@ public class playerMovementScript : MonoBehaviour
         acceleration = (this.GetComponent<CharacterController>().velocity.magnitude - lastVelocity.magnitude) / Time.fixedDeltaTime;
         lastVelocity = this.GetComponent<CharacterController>().velocity;
         force = System.Math.Abs(acceleration * gravity);
-        if (force > 1000)
-            Debug.Log(force);
+        //var writer = null;
+        if (File.Exists("forceFile"))
+        {
+            //var writer = File.CreateText("forceFile");
+        }
+        else
+        {
+            var writer = File.CreateText("forceFile");
+            Debug.Log("created file");
+        }
+
+        if (force > 2000 && File.Exists("forceFile"))
+        {
+            /*
+            using (var fs = File.Open("forceFile", FileMode.Open, FileAccess.Write, FileShare.None))
+            {
+                Debug.Log("opened file");
+                Byte[] info = new UTF8Encoding(true).GetBytes(force.ToString());
+                fs.Write(info);
+            }
+            */
+            using (StreamWriter sw = File.AppendText("forceFile"))
+            {
+                Debug.Log("opened file");
+                sw.WriteLine(force + "," + gravity);
+                sw.Close();
+            }
+            count += 1;
+            //fs.Close();
+        }
+
     }
 
 

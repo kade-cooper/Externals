@@ -23,9 +23,11 @@ public class playerMovementScriptLab : MonoBehaviour
 
     public GameObject carrying;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        gravity = -30;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
