@@ -6,8 +6,9 @@ public class headScript : MonoBehaviour
 {
     public GameObject whole;
     public bool hasBeenShoved=false;
-    public float velocityToSmash = 2;
+    public float forceToSmash = 2;
     public GameObject blood;
+    public GameObject bloodpool;
     public playerMovementScript pms;
 
 
@@ -19,9 +20,10 @@ public class headScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag("stomp") && pms.velocity.y<=velocityToSmash)
+        if (other.gameObject.CompareTag("stomp") && pms.force<=forceToSmash)
         {
             Instantiate(blood, this.transform.position, Quaternion.identity);
+            Instantiate(bloodpool, this.transform.position, Quaternion.identity);
             Destroy(whole);
         }
     }
