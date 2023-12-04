@@ -13,7 +13,7 @@ public class enemyScript1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag=="hammer")
+        if (collision.gameObject.tag=="hammer" && !hasBeenHit)
         {
             Debug.Log("collided with shove");
             this.GetComponent<Rigidbody>().AddForce(collision.transform.forward*shoveImpulse);
